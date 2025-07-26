@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hanoi Map with Leaflet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Khởi tạo bản đồ tại Hà Nội
+      var map = L.map("map").setView([21.0285, 105.8542], 13);
+
+      // Dùng tile của OpenStreetMap
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      // 5 điểm ở Hà Nội
+      var locations = [
+        { name: "Đền Ngọc Sơn", lat: 21.033, lng: 105.852 },
+        { name: "Lăng Bác", lat: 21.0379, lng: 105.834 },
+        { name: "Hồ Tây", lat: 21.07, lng: 105.822 },
+        { name: "Văn Miếu", lat: 21.028, lng: 105.835 },
+        { name: "Nhà hát lớn", lat: 21.025, lng: 105.86 },
+      ];
+
+      locations.forEach(function (loc) {
+        L.marker([loc.lat, loc.lng]).addTo(map).bindPopup(loc.name);
+      });
+    </script>
+  </body>
+</html>
